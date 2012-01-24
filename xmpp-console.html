@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>XMPP Console</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/xmpp-console.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="page-header">
+          <h1>XMPP Console<small></small></h1>
+        </div>
+        <div class="row">
+          <div id="main-content" class="span14">
+            <pre id="console"></pre>
+            <div id="controls">
+              <form>
+                <div class="clearfix">
+                  <div class="input">
+                    <textarea id="main-input" class="xxlarge" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="actions">
+                  <button id="disconnect" class="btn danger">Disconnect</button>
+                  <button id="clear" class="btn">Clear console</button>
+                  <button id="send-message" class="btn primary">Send message</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- login modal -->
+    <div id="login-modal" class="modal hide fade">
+      <div class="modal-header">
+        <h3>Login</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-stacked">
+          <fieldset>
+            <div class="clearfix">
+              <label for="jid">JID</label>
+              <div class="input">
+                <input class="xlarge" id="jid" name="jid" size="30" type="text" />
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="password">Password</label>
+              <div class="input">
+                <input class="xlarge" id="password" name="password" size="30" type="password" />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div id="status-msg" style="float:left">
+        </div>
+        <button class="btn primary" id="login-btn">Login</button>
+      </div>
+    </div>
+    <!-- /login modal -->
+
+    <script src="js/jquery-1.7.1.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/strophe.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/prettify.js"></script>
+    <script src="js/xmpp-console.js"></script>
+  </body>
+</html>
