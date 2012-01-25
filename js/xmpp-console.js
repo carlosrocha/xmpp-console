@@ -1,19 +1,16 @@
-$(function() {
-
-  $('.btn').click(function(e) {
-    e.preventDefault();
-  });
-
-  window.xmppconsole = {
+(function() {
+  "use strict";
+  
+  var xmppconsole = {
     HTTPBIND_URL: "http://localhost:8000/xmpp-httpbind",
 
     parseXml: function(text) {
       var doc = null;
-      if (window['DOMParser']) {
-        var parser = new DOMParser();
+      if (window.DOMParser) {
+        var parser = new window.DOMParser();
         doc = parser.parseFromString(text, 'text/xml');
-      } else if (window['ActiveXObject']) {
-        var doc = new ActiveXObject("MSXML2.DOMDocument");
+      } else if (window.ActiveXObject) {
+        doc = new window.ActiveXObject("MSXML2.DOMDocument");
         doc.async = false;
         doc.loadXML(text);
       } else {
@@ -27,9 +24,9 @@ $(function() {
         return null;
       }
       return elem;
-    },
+    }
   };
-
+  
   xmppconsole.LoginView = Backbone.View.extend({
     el: $('#login-modal'),
 
@@ -39,7 +36,7 @@ $(function() {
       this.el.modal({
         keyboard: false,
         backdrop: 'static',
-        show: true,
+        show: true
       });
     },
 
@@ -47,7 +44,7 @@ $(function() {
       this.el.modal({
         keyboard: false,
         backdrop: 'static',
-        show:false,
+        show:false
       });
     },
 
@@ -55,19 +52,21 @@ $(function() {
       this.el.modal({
         keyboard: false,
         backdrop: 'static',
-        show: true,
+        show: true
       });
     },
 
     filterOnEnter: function(e) {
-      if (e.keyCode != 13) return;
+      if (e.keyCode !== 13) {
+        return;
+      }
       this.login();
     },
 
     events: {
       'click #login-btn': 'login',
       'keypress #jid': 'filterOnEnter',
-      'keypress #password': 'filterOnEnter',
+      'keypress #password': 'filterOnEnter'
     },
 
     connListener: function(status) {
@@ -96,7 +95,7 @@ $(function() {
 
       this.conn = new Strophe.Connection(xmppconsole.HTTPBIND_URL);
       this.conn.connect(jid, password, _.bind(this.connListener, this));
-    },
+    }
   });
 
   xmppconsole.AppView = Backbone.View.extend({
@@ -107,14 +106,14 @@ $(function() {
 
     initialize: function() {
       // Show the login modal and wait for the connection
-      this.loginView = new xmppconsole.LoginView;
+      this.loginView = new xmppconsole.LoginView();
       this.loginView.bind('connected', this.connected, this);
     },
 
     events: {
       'click #send-message': 'sendMessage',
       'click #disconnect': 'disconnect',
-      'click #clear': 'clearConsole',
+      'click #clear': 'clearConsole'
     },
 
     connected: function(conn) {
@@ -138,7 +137,7 @@ $(function() {
         if (node.match( /.+<\/\w[^>]*>$/ )) {
           indent = 0;
         } else if (node.match( /^<\/\w/ )) {
-          if (pad != 0) {
+          if (pad !== 0) {
             pad -= 1;
           }
         } else if (node.match( /^<\w[^>]*[^\/]>.*$/ )) {
@@ -212,9 +211,19 @@ $(function() {
       this.conn.disconnect();
       this.clearConsole();
       this.loginView.show();
-    },
+    }
   });
 
+  window.xmppconsole = xmppconsole;
+})();
+
+$(function() {
+  "use strict";
+  
+  $('.btn').click(function(e) {
+    e.preventDefault();
+  });
+  
   // Start the main view
-  var appview = new xmppconsole.AppView;
+  var appview = new window.xmppconsole.AppView();
 });
