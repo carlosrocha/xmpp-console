@@ -2,83 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>XMPP Console</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
-    <link href="css/xmpp-console.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/highlight/styles/default.css" rel="stylesheet">
+    <link href="xmpp-console.css" rel="stylesheet">
   </head>
 
   <body>
     <div class="container">
-      <div class="content">
-        <div class="page-header">
-          <h1>XMPP Console<small></small></h1>
-        </div>
-        <div class="row">
-          <div id="main-content" class="span14">
-            <pre id="console"></pre>
-            <div id="controls">
-              <form>
-                <div class="clearfix">
-                  <div class="input">
-                    <textarea id="main-input" class="xxlarge" rows="3"></textarea>
-                  </div>
-                </div>
-                <div class="actions">
-                  <button id="disconnect" class="btn danger">Disconnect</button>
-                  <button id="clear" class="btn">Clear console</button>
-                  <button id="send-message" class="btn primary">Send message</button>
-                </div>
-              </form>
+      <div class="page-header">
+        <h1>XMPP Console</h1>
+      </div>
+      <div class="row">
+        <div id="main-content">
+          <pre id="console"></pre>
+          <div id="controls">
+            <textarea id="main-input" class="form-control" rows="3"></textarea>
+            <div class="actions">
+              <button id="disconnect" class="btn btn-danger">Disconnect</button>
+              <button id="clear" class="btn btn-info">Clear console</button>
+              <button id="send-message" class="btn btn-primary">Send message</button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <footer>
-        <p></p>
-      </footer>
-
-    </div> <!-- /container -->
-
-    <!-- login modal -->
-    <div id="login-modal" class="modal hide fade">
-      <div class="modal-header">
-        <h3>Login</h3>
-      </div>
-      <div class="modal-body">
-        <div class="form-stacked">
-          <fieldset>
-            <div class="clearfix">
-              <label for="jid">JID</label>
-              <div class="input">
-                <input class="xlarge" id="jid" name="jid" size="30" type="text" />
+    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Login</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="jid">JID</label>
+                <input type="email" class="form-control" id="jid" placeholder="admin@localhost">
               </div>
-            </div>
-            <div class="clearfix">
-              <label for="password">Password</label>
-              <div class="input">
-                <input class="xlarge" id="password" name="password" size="30" type="password" />
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="admin">
               </div>
-            </div>
-          </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div id="status-msg" style="float:left"></div>
+            <button class="btn btn-primary" id="login-btn">Login</button>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <div id="status-msg" style="float:left">
-        </div>
-        <button class="btn primary" id="login-btn">Login</button>
       </div>
     </div>
-    <!-- /login modal -->
 
-    <script src="js/jquery-1.7.1.js"></script>
-    <script src="js/underscore.js"></script>
-    <script src="js/backbone.js"></script>
-    <script src="js/strophe.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/prettify.js"></script>
-    <script src="js/xmpp-console.js"></script>
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/underscore.js"></script>
+    <script src="vendor/backbone.js"></script>
+    <script src="vendor/strophe.js"></script>
+    <script src="vendor/highlight/highlight.pack.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="xmpp-console.js"></script>
   </body>
 </html>

@@ -1,0 +1,15 @@
+#console {
+  overflow-y: scroll;
+  height: 400px;
+}
+.incoming:before {
+  content: "\2190";
+  margin-right: 5px;
+}
+.outgoing:before {
+  content: "\2192";
+  margin-right: 5px;
+}
+.hljs {
+  background: none;
+}
