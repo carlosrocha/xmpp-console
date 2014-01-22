@@ -55,7 +55,7 @@
 
     return _.escape(formatted);
   };
-  
+
   var LoginView = Backbone.View.extend({
     el: $('#login-modal'),
 
@@ -125,16 +125,14 @@
 
     connected: function(conn) {
       this.conn = conn;
-      this.conn.xmlInput = _.bind(function(body) {
-        this.addToConsole(Strophe.serialize(body), 'incoming');
-      }, this);
-      this.conn.xmlOutput = _.bind(function (body) {
-        this.addToConsole(Strophe.serialize(body), 'outgoing');
-      }, this);
+      var incoming = _.bind(_.partial(this.addToConsole, 'incoming'), this);
+      var outgoing = _.bind(_.partial(this.addToConsole, 'outgoing'), this);
+      conn.xmlInput = incoming;
+      conn.xmlOutput = outgoing;
     },
 
-
-    addToConsole: function(msg, type) {
+    addToConsole: function(type, element) {
+      var msg = Strophe.serialize(element);
       var formatted = formatXml(msg);
  
       var newEntry = $(this.msgTemplate({type: type, msg: formatted}));
