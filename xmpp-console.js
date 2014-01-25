@@ -20,7 +20,7 @@
   var parseXml = function(val) {
     var result = new window.DOMParser().parseFromString(val, 'text/xml');
 
-    if (result.getElementsByTagName('parsererror')) {
+    if (result.getElementsByTagName('parsererror').length > 0) {
       return false;
     } else {
       return result;
