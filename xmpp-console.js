@@ -44,7 +44,7 @@
           view.enable();
           break;
         case Strophe.Status.DISCONNECTED:
-          view.updateStatis('Server unavailable', true);
+          view.updateStatus('Server unavailable', true);
           view.enable();
           break;
       }
