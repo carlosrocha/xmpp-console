@@ -23,7 +23,7 @@
     if (result.getElementsByTagName('parsererror').length > 0) {
       return false;
     } else {
-      return result;
+      return result.firstChild;
     }
   };
 
