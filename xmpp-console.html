@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <title>XMPP Console</title>
 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -11,47 +12,42 @@
   </head>
 
   <body>
+    <script type="text/template" id="login-template">
+      <form role="form">
+        <fieldset>
+          <div class="form-group">
+            <label class="control-label" for="jid">JID</label>
+            <input type="email" class="form-control input-lg" id="jid" placeholder="admin@localhost">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="password">Password</label>
+            <input type="password" class="form-control input-lg" id="password" placeholder="admin">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg center-block">Login</button>
+          </div>
+        </fieldset>
+      </form>
+      <p class="lead text-center"></p>
+    </script>
+
+    <script type="text/template" id="console-template">
+      <pre></pre>
+      <textarea id="input" class="form-control" rows="3"></textarea>
+      <div class="actions">
+        <button id="disconnect" class="btn btn-danger"><span class="glyphicon glyphicon-stop"></span> Disconnect</button>
+        <button id="clear" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> Clear console</button>
+        <button id="send" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Send</button>
+        <span id="error-message" class="error pull-right lead"></span>
+      </div>
+    </script>
+
     <div class="container">
       <div class="page-header">
-        <h1>XMPP Console</h1>
+        <h1 class="text-center">XMPP Console</h1>
       </div>
       <div class="row">
-        <div id="main-content">
-          <pre id="console"></pre>
-          <div id="controls">
-            <textarea id="main-input" class="form-control" rows="3"></textarea>
-            <div class="actions">
-              <button id="disconnect" class="btn btn-danger">Disconnect</button>
-              <button id="clear" class="btn btn-info">Clear console</button>
-              <button id="send-message" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Login</h4>
-          </div>
-          <div class="modal-body">
-            <form role="form">
-              <div class="form-group">
-                <label for="jid">JID</label>
-                <input type="email" class="form-control" id="jid" placeholder="admin@localhost">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="admin">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <div id="status-msg" style="float:left"></div>
-            <button class="btn btn-primary" id="login-btn">Login</button>
-          </div>
+        <div id="main">
         </div>
       </div>
     </div>
