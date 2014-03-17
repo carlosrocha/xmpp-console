@@ -69,6 +69,11 @@
       var jid = this.$('#jid').val();
       var password = this.$('#password').val();
 
+      if (!jid || !password) {
+        this.updateStatus('Jid and password are required', true);
+        return false;
+      }
+
       var conn = new Strophe.Connection(httpBindUrl);
       conn.connect(jid, password, connCallback(this));
       this.$('fieldset').prop('disabled', true);
