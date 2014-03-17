@@ -4,4 +4,4 @@ The application was built using Strophe.js, Backbone.js, jQuery and Twitter Boot
 
 ## Usage
 
-Included is a `.taperc` file so you can easily run `tape` (https://github.com/metajack/tape) and get the server running with the proxy on http://localhost:8000/xmpp-httpbind pointing to http://localhost:5280/http-bind (default for ejabberd).
+Change the `xmppServiceUrl` to point to your service, if you are using BOSH make sure to start an HTTP server, e.g. `python -m SimpleHTTPServer` on the folder.

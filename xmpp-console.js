@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var httpBindUrl = '/xmpp-httpbind';
+  var xmppServiceUrl = 'ws://localhost:5280/xmpp-websocket';
 
   var formatXml = function(xml) {
     xml = xml.replace(/></g, '>\n<');
@@ -74,7 +74,7 @@
         return false;
       }
 
-      var conn = new Strophe.Connection(httpBindUrl);
+      var conn = new Strophe.Connection(xmppServiceUrl);
       conn.connect(jid, password, connCallback(this));
       this.$('fieldset').prop('disabled', true);
 
