@@ -43,6 +43,8 @@
           view.updateStatus('Authentication failed', true);
           view.enable();
           break;
+        case Strophe.Status.DISCONNECTING:
+          break;
         case Strophe.Status.DISCONNECTED:
           view.updateStatus('Server unavailable', true);
           view.enable();
@@ -130,6 +132,9 @@
     },
 
     disconnect: function() {
+      // i should be listening for events on the connection instead
+      this.conn.disconnect();
+      this.trigger('disconnect');
     },
 
     clear: function() {
@@ -168,16 +173,24 @@
     el: '#main',
     
     render: function() {
-      this.loginView = new LoginView();
-      this.$el.append(this.loginView.render().el);
-      this.listenTo(this.loginView, 'connected', this.showConsole);
-
+      this.showLogin();
       return this;
     },
 
+    showLogin: function() {
+      if (this.consoleView) this.consoleView.remove();
+
+      this.loginView = new LoginView();
+      this.$el.append(this.loginView.render().el);
+      this.listenTo(this.loginView, 'connected', this.showConsole);
+    },
+
     showConsole: function(connection) {
-      this.loginView.remove();
-      this.$el.append(new ConsoleView({ connection: connection }).render().el);
+      if (this.loginView) this.loginView.remove();
+
+      this.consoleView = new ConsoleView({ connection: connection });
+      this.$el.append(this.consoleView.render().el);
+      this.listenTo(this.consoleView, 'disconnect', this.showLogin);
     }
   });
 
