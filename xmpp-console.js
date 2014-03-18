@@ -124,7 +124,8 @@
       var consoleEl = this.$('pre');
       var msg = Strophe.serialize(element);
       var formatted = formatXml(msg);
-      var newEntry = $('<div>', { 'class': type }).text(formatted);
+      var title = type + ' at ' + new Date();
+      var newEntry = $('<div>', { 'class': type, title: title }).text(formatted);
       consoleEl.append(newEntry);
       hljs.highlightBlock(newEntry.get(0));
 
