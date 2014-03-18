@@ -34,17 +34,22 @@
     <script type="text/template" id="console-template">
       <pre></pre>
       <textarea id="input" class="form-control" rows="3"></textarea>
-      <div class="actions">
-        <button id="disconnect" class="btn btn-danger"><span class="glyphicon glyphicon-stop"></span> Disconnect</button>
-        <button id="clear" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> Clear console</button>
-        <button id="send" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Send</button>
-        <span id="error-message" class="error pull-right lead"></span>
+      <div class="row">
+        <div class="col-md-6"><span class="lead">Logged in as <%= jid %></span></div>
+        <div class="col-md-6"><span id="error-message" class="error pull-right lead"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button id="disconnect" class="btn btn-danger">Disconnect</button>
+          <button id="clear" class="btn btn-info">Clear console</button>
+          <button id="send" class="btn btn-primary">Send</button>
+        </div>
       </div>
     </script>
 
     <div class="container">
       <div class="page-header">
-        <h1 class="text-center">XMPP Console</h1>
+        <h2 class="text-center">XMPP Console</h2>
       </div>
       <div class="row">
         <div id="main">

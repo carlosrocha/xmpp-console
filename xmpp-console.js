@@ -116,7 +116,8 @@
     },
 
     render: function() {
-      this.$el.html(this.template());
+      var jid = this.conn.jid.split('/')[0];
+      this.$el.html(this.template({ jid: jid }));
       return this;
     },
 
